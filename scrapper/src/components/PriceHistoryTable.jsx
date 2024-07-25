@@ -28,7 +28,7 @@ function PriceHistoryTable({ priceHistory, onClose }) {
   };
 
   return (
-    <div>
+    <div className="price-history">
       <h2>Price History</h2>
       <table>
         <thead>

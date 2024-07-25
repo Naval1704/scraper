@@ -28,14 +28,29 @@ function App() {
     }
   };
 
+  const handleSearchTextClick = async (searchText) => {
+    try {
+      const response = await axios.get(
+        `${URL}/results?search_text=${searchText}`
+      );
+
+      const data = response.data;
+      setPriceHistory(data);
+      setShowPriceHistory(true);
+    } catch (error) {
+      console.error("Error fetching price history:", error);
+    }
+  };
+
   const handlePriceHistoryClose = () => {
     setShowPriceHistory(false);
     setPriceHistory([]);
   };
 
-  const handleNewSearchTextChange = async (event) => {
+  const handleNewSearchTextChange = (event) => {
     setNewSearchText(event.target.value);
   };
+
   const handleNewSearchTextSubmit = async (event) => {
     event.preventDefault();
 
@@ -53,19 +68,6 @@ function App() {
     }
   };
 
-  const handleSearchTextClick = async (searchText) => {
-    try {
-      const response = await axios.get(
-        `${URL}/results?search_text=${searchText}`
-      );
-
-      const data = response.data;
-      setPriceHistory(data);
-      setShowPriceHistory(true);
-    } catch (error) {
-      console.error("Error fetching price history:", error);
-    }
-  };
 
   return (
     <div className="App">

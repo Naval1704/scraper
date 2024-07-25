@@ -139,8 +139,8 @@
 .search-text-list button {
   padding: 10px 20px;
   font-size: 16px;
-  color: #fff;
-  background-color: #007bff;
+  color: #001F63;
+  background-color: #CDCDCE;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -148,12 +148,12 @@
 }
 
 .search-text-list button:hover {
-  background-color: #0056b3;
+  background-color: #B6B8BB;
 }
 
 .tracked-product-list {
   width: 1000px;
-  margin: 0 auto;
+  margin: 0 20px 30px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 12px;
@@ -221,4 +221,99 @@
 
 .tracked-product-list .add-product button:hover {
   background-color: #0056b3;
+}
+
+.price-history {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 0px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.price-history h2 {
+  color: #c98208;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.price-history table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.price-history thead {
+  background-color: #E1E0E0;
+  color: white;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  font-weight: bold;
+  color: #001F63;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.price-history a {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.price-history a:hover {
+  text-decoration: underline;
+}
+
+.price-history button {
+  display: block;
+  width: 100px;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.price-history button:hover {
+  background-color: #0056b3;
+}
+
+.price-history .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price-history .row th, .row td {
+  flex: 1;
+}
+
+.price-history td {
+  text-align: center;
+}
+
+.price-history .red {
+  color: red;
+}
+
+.price-history .green {
+  color: green;
 }
