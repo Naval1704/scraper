@@ -56,20 +56,24 @@
 
 .content {
   margin-top: 50px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  display: flex;
 }
 
 .search {
-  max-width: 700px;
-  margin: 0 auto;
+  width: 1000px;
+  margin: 0 20px 30px;
   padding: 20px;
   border: 1px solid #ddd;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .search h2 {
   margin-bottom: 20px;
-  color: #C98208;
+  color: #c98208;
 }
 
 .search form {
@@ -104,5 +108,117 @@
 }
 
 .search button:hover {
+  background-color: #0056b3;
+}
+
+.search-text-list {
+  width: 1000px;
+  margin: 0 20px 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-text-list h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #c98208;
+}
+
+.search-text-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.search-text-list li {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.search-text-list button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-text-list button:hover {
+  background-color: #0056b3;
+}
+
+.tracked-product-list {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tracked-product-list h2 {
+  color: #c98208;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.tracked-product-list h3 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.tracked-product-list ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.tracked-product-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tracked-product-list li:last-child {
+  border-bottom: none;
+}
+
+.tracked-product-list input[type="checkbox"] {
+  margin-left: 10px;
+}
+
+.tracked-product-list .add-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tracked-product-list .add-product input[type="text"] {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+}
+
+.tracked-product-list .add-product button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tracked-product-list .add-product button:hover {
   background-color: #0056b3;
 }
