@@ -19,7 +19,7 @@ available_urls = URLS.keys()
 
 
 def load_auth():
-    FILE = os.path.join("scrapper", "auth.json")
+    FILE = os.path.join("scraper", "auth.json")
     with open(FILE, "r") as f:
         return json.load(f)
 
