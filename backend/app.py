@@ -3,13 +3,15 @@ from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_cors import CORS
+import logging
 
 app = Flask(__name__)
 CORS(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 
 db = SQLAlchemy(app)
 
+logging.basicConfig(level=logging.DEBUG)
 
 class ProductResult(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -43,24 +45,30 @@ class TrackedProducts(db.Model):
 
 @app.route('/results', methods=['POST'])
 def submit_results():
-    results = request.json.get('data')
-    search_text = request.json.get("search_text")
-    source = request.json.get("source")
+    try:
+        print("Submit results route hit")
+        results = request.json.get('data')
+        search_text = request.json.get("search_text")
+        source = request.json.get("source")
+        print(f"Results: {results}, Search Text: {search_text}, Source: {source}")
 
-    for result in results:
-        product_result = ProductResult(
-            name=result['name'],
-            url=result['url'],
-            img=result["img"],
-            price=result['price'],
-            search_text=search_text,
-            source=source
-        )
-        db.session.add(product_result)
+        for result in results:
+            product_result = ProductResult(
+                name=result['name'],
+                url=result['url'],
+                img=result["img"],
+                price=result['price'],
+                search_text=search_text,
+                source=source
+            )
+            db.session.add(product_result)
 
-    db.session.commit()
-    response = {'message': 'Received data successfully'}
-    return jsonify(response), 200
+        db.session.commit()
+        response = {'message': 'Received data successfully'}
+        return jsonify(response), 200
+    except Exception as e:
+        app.logger.error(f"Error in submit_results: {e}")
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/unique_search_texts', methods=['GET'])
@@ -196,4 +204,4 @@ def update_tracked_products():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run()
+    app.run(debug=True)

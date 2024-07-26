@@ -19,11 +19,11 @@ available_urls = URLS.keys()
 
 
 def load_auth():
-    FILE = os.path.join("Scraper", "auth.json")
+    FILE = os.path.join("scrapper", "auth.json")
     with open(FILE, "r") as f:
         return json.load(f)
 
-# place your bright data credentials in auth.json file with keys: "username", "password" and "host"
+# Place your bright data credentials in auth.json file with keys: "username", "password" and "host"
 cred = load_auth()
 auth = f'{cred["username"]}:{cred["password"]}'
 browser_url = f'wss://{auth}@{cred["host"]}'
@@ -49,25 +49,25 @@ async def search(metadata, page, search_text):
 
 
 async def get_products(page, search_text, selector, get_product):
-    print("Retreiving products.")
+    print("Retrieving products.")
     product_divs = await page.query_selector_all(selector)
     valid_products = []
     words = search_text.split(" ")
 
-    async with asyncio.TaskGroup() as tg:
-        for div in product_divs:
-            async def task(p_div):
-                product = await get_product(p_div)
+    async def task(p_div):
+        product = await get_product(p_div)
 
-                if not product["price"] or not product["url"]:
-                    return
+        if not product["price"] or not product["url"]:
+            return
 
-                for word in words:
-                    if not product["name"] or word.lower() not in product["name"].lower():
-                        break
-                else:
-                    valid_products.append(product)
-            tg.create_task(task(div))
+        for word in words:
+            if not product["name"] or word.lower() not in product["name"].lower():
+                break
+        else:
+            valid_products.append(product)
+
+    tasks = [task(div) for div in product_divs]
+    await asyncio.gather(*tasks)
 
     return valid_products
 
@@ -120,4 +120,4 @@ async def main(url, search_text, response_route):
 
 if __name__ == "__main__":
     # test script
-    asyncio.run(main(AMAZON, "ryzen 9 3950x"))
+    asyncio.run(main(AMAZON, "ryzen 9 3950x", "/results"))
